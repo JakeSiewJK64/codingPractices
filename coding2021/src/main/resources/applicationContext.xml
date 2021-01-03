@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+	<beans  
+	    xmlns="http://www.springframework.org/schema/beans"  
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	    xmlns:p="http://www.springframework.org/schema/p"  
+	    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+	  
+		<bean id="studentbean" class="com.springframework.Student">  
+			<property name="name" value="Vimal Jaiswal"></property>  
+		</bean>    
+		
+		<!-- Sets -->
+		<bean id="question" class="com.springframework.Question">
+			<constructor-arg value="111"></constructor-arg>
+			<constructor-arg value="What is java?"></constructor-arg>
+			
+			<constructor-arg>
+				<list>
+					<value>Java is a programming language</value>
+					<value>Java is a platform</value>
+					<value>Java is an island</value>
+				</list>	
+			</constructor-arg>		
+		</bean>
+		
+		<!--Map and Set -->
+		<bean id="question_map" class="com.springframework.QuestionMap">
+			<constructor-arg value="11"></constructor-arg>
+			<constructor-arg value="What is Java?"></constructor-arg>
+			<constructor-arg>
+				<map>
+					<entry key="Java is a programming language" value="Paul"></entry>
+					<entry key="Java is a platform" value="Jake"></entry>	
+					<entry key="Java is an island" value="John"></entry>				
+				</map>
+			</constructor-arg>
+		</bean>
+		
+		<!-- Map and Set 2 -->
+		
+		<bean id="answer1" class="com.springframework.Answer">
+			<constructor-arg value="1"></constructor-arg>
+			<constructor-arg value="Java is a programming language"></constructor-arg>
+			<constructor-arg value="12/10/2001"></constructor-arg>
+		</bean>		
+		
+		<bean id="answer2" class="com.springframework.Answer">
+			<constructor-arg value="2"></constructor-arg>
+			<constructor-arg value="Java is a platform"></constructor-arg>
+			<constructor-arg value="12/12/2003"></constructor-arg>
+		</bean>
+		
+		<bean id="answer3" class="com.springframework.Answer">
+			<constructor-arg value="3"></constructor-arg>
+			<constructor-arg value="java is an island"></constructor-arg>
+			<constructor-arg value="12/11/2003"></constructor-arg>
+		</bean>
+		
+		
+		<bean id="user1" class="com.springframework.User">
+			<constructor-arg value="1"></constructor-arg>	
+			<constructor-arg value="Jake"></constructor-arg>	
+			<constructor-arg value="jake@gmail.com"></constructor-arg>	
+		</bean>	
+		
+		<bean id="user2" class="com.springframework.User">
+			<constructor-arg value="2"></constructor-arg>	
+			<constructor-arg value="Pokie"></constructor-arg>	
+			<constructor-arg value="Pokie@gmail.com"></constructor-arg>	
+		</bean>	
+		
+		<bean id="user3" class="com.springframework.User">
+			<constructor-arg value="3"></constructor-arg>	
+			<constructor-arg value="John"></constructor-arg>	
+			<constructor-arg value="John@gmail.com"></constructor-arg>	
+		</bean>	
+		
+		<bean id="questionmap-2" class="com.springframework.QuestionMap2">
+			<constructor-arg value="2"></constructor-arg>
+			<constructor-arg value="What is Java?"></constructor-arg>
+			<constructor-arg>
+				<map>
+					<entry key-ref="answer1" value-ref="user1"></entry>
+					<entry key-ref="answer2" value-ref="user2"></entry>					
+					<entry key-ref="answer3" value-ref="user3"></entry>
+				</map>
+			</constructor-arg>
+		</bean>		
+		
+		<!-- inheritance -->
+		<bean id="e1" class="com.springframework.inheritingBean.Employee">
+			<constructor-arg value="101"></constructor-arg>
+			<constructor-arg value="Sachin"></constructor-arg>
+		</bean>
+		
+		<bean id="address1" class="com.springframework.inheritingBean.Address">
+			<constructor-arg value="21, Lohianagar"></constructor-arg>
+			<constructor-arg value="Ghziabad"></constructor-arg>
+			<constructor-arg value="UP"></constructor-arg>
+			<constructor-arg value="USA"></constructor-arg>
+		</bean>
+		
+		<bean id="e2" class="com.springframework.inheritingBean.Employee" parent = "e1">
+			<constructor-arg ref="address1"></constructor-arg>
+		</bean>
+		
+		<!-- Setter Injection -->
+		<bean id="address123" class="com.springframework.setterInjection.Address">
+			<property name="addressLine1" value="51, Logianagar"></property>
+			<property name="city" value="Ghaziabad"></property>
+			<property name="state" value="UP"></property>
+			<property name="country" value="USA"></property>
+		</bean>
+		
+		<bean id="obj" class="com.springframework.setterInjection.Employee">
+			<property name="id" value="1"></property>
+			<property name="name" value="Sachin"></property>
+			<property name="address" ref="address123"></property>			
+		</bean>
+		
+		<!-- Setter Injection with list -->
+		<bean id="questionListListSetterInjection" class="com.springframework.setterInjectionWithCollection.Question">
+			<property name="id" value="1"></property>
+			<property name="name" value="What is Java?"></property>
+			<property name="answers">
+				<list>
+					<value>Java is a programming language</value>
+					<value>Java is a platform</value>
+					<value>Java is an island</value>
+				</list>
+			</property>
+		</bean>		
+		
+		
+		
+		<!-- This is for Setter Injection Collections with Separate Class -->
+		<bean id="answer12" class="com.springframework.setterInjectionWithCollection.Answer">
+			<property name="id" value="1"></property>
+			<property name="name" value="Java is a programming language"></property>
+			<property name="by" value="Jake"></property>
+		</bean>
+
+		<!-- This is for Setter Injection Collections with Separate Class -->
+		<bean id="answer13" class="com.springframework.setterInjectionWithCollection.Answer">
+			<property name="id" value="2"></property>
+			<property name="name" value="Java is a platform"></property>
+			<property name="by" value="Sacchin"></property>
+		</bean>
+		
+		<bean id="answer14" class="com.springframework.setterInjectionWithCollection.Answer">
+			<property name="id" value="3"></property>
+			<property name="name" value="Java is an island"></property>
+			<property name="by" value="John"></property>
+		</bean>
+		
+		<!-- Setter Injection with list -->
+		<bean id="questionCollections2" class="com.springframework.setterInjectionWithCollection.Question">
+			<property name="id" value="1"></property>
+			<property name="name" value="What is Java?"></property>
+			<property name="answers">
+				<list>
+					<value>s</value>
+				</list>
+			</property>
+		</bean>
+		
+		
+		<!-- Setter Injection for Maps -->
+		<!-- 
+		<bean id="q" class="com.SetterInjectionMap.Question">
+			<property name="id" value="1"></property>
+			<property name="name" value="What is Java?"></property>
+			<property name="answers">
+				<map>
+					<entry key="Java is a programming language" value="Jake"></entry>
+					<entry key="Java is an island" value="John"></entry>
+				</map>
+			</property>
+		</bean>
+		-->
+		
+		<!-- Setter Injection for Map 2 -->
+		<bean id="ANSWER" class="com.SetterInjectionMap.Answer">
+			<property name="id" value="1"></property>
+			<property name="answer" value="Java is a programming language"></property>
+			<property name="postedDate" value="12/12/20"></property>			
+		</bean>
+		
+		<bean id="ANSWER2" class="com.SetterInjectionMap.Answer">
+			<property name="id" value="2"></property>
+			<property name="answer" value="Java is an island"></property>
+			<property name="postedDate" value="13/12/20"></property>			
+		</bean>
+		
+		<bean id="USER1" class="com.SetterInjectionMap.User">
+			<property name="id" value="1"></property>
+			<property name="name" value="Jake"></property>
+			<property name="email" value="jake@gmail.com"></property>
+		</bean>
+
+		<bean id="USER2" class="com.SetterInjectionMap.User">
+			<property name="id" value="2"></property>
+			<property name="name" value="John"></property>
+			<property name="email" value="john@gmail.com"></property>
+		</bean>
+		
+		<bean id="q" class="com.SetterInjectionMap.Question2">
+			<property name="id" value="1"></property>
+			<property name="name" value="What is Java?"></property>
+			<property name="answers">
+				<map>
+					<entry key-ref="ANSWER" value-ref="USER1"></entry>
+					<entry key-ref="ANSWER2" value-ref="USER2"></entry>
+				</map>
+			</property>
+		</bean>
+		
+		
+	</beans>  
